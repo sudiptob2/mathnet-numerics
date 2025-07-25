@@ -110,7 +110,7 @@ build_packages() {
     print_status "Packages are available in: ${PACKAGE_DIR}/"
 }
 
-# Function to publish packages - Uploads to NuGet.org
+# Publish packages - Uploads to NuGet.org
 publish_packages() {
     print_status "Publishing ${PACKAGE_PREFIX} Math.NET Numerics MKL Linux Provider to NuGet..."
     
@@ -223,13 +223,10 @@ show_usage() {
 # Main script logic
 case "${1:-help}" in
     "build")
-        # Set up trap to revert changes on exit (including errors)
         trap revert_changes EXIT
         
-        # Apply custom package names
         apply_custom_names
         
-        # Build packages
         build_packages
         
         # Note: The trap will automatically revert changes when the script exits
